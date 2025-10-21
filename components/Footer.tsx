@@ -35,10 +35,10 @@ export default function Footer() {
     }
   }
   const footerLinks = {
-    产品: ['智能温控床垫', '睡眠监测系统', '智能枕头', '配件与服务'],
-    支持: ['帮助中心', '安装指南', '常见问题', '联系客服'],
-    公司: ['关于我们', '新闻动态', '加入我们', '合作伙伴'],
-    资源: ['睡眠博客', '科学研究', '用户评价', '隐私政策'],
+    Products: ['Temperature Mattress', 'Sleep Monitor', 'Smart Pillow', 'Accessories'],
+    Support: ['Help Center', 'Installation', 'FAQ', 'Contact Us'],
+    Company: ['About Us', 'News', 'Careers', 'Partners'],
+    Resources: ['Sleep Blog', 'Research', 'Reviews', 'Privacy'],
   }
 
   return (
@@ -111,16 +111,17 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(footerLinks).map(([category, links], index) => (
             <div key={index}>
-              <h3 className="font-semibold text-white mb-4">{category}</h3>
+              <h3 className="font-display font-light text-white mb-4 tracking-wide">{category}</h3>
               <ul className="space-y-3">
                 {links.map((link, i) => (
                   <li key={i}>
                     <motion.a
                       href="#"
                       whileHover={{ x: 5 }}
-                      className="text-sleep-blue-300 hover:text-white transition-colors text-sm"
+                      className="text-sleep-blue-300 hover:text-white transition-colors text-sm font-light relative group inline-block"
                     >
                       {link}
+                      <span className="absolute bottom-0 left-0 w-0 h-px bg-sleep-orange-600 group-hover:w-full transition-all duration-300" />
                     </motion.a>
                   </li>
                 ))}
@@ -137,9 +138,9 @@ export default function Footer() {
           className="border-t border-sleep-blue-800 pt-12 mb-12"
         >
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-xl font-semibold mb-4">订阅睡眠科学资讯</h3>
-            <p className="text-sleep-blue-300 mb-6">
-              获取最新的睡眠研究成果和产品更新
+            <h3 className="text-2xl font-display font-light mb-4 tracking-tight">Stay Updated</h3>
+            <p className="text-sleep-blue-300 mb-6 font-light text-sm">
+              Get the latest sleep research and product updates
             </p>
             <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
               <div className="flex gap-4">
@@ -147,19 +148,19 @@ export default function Footer() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="输入您的邮箱"
+                  placeholder="Enter your email"
                   required
                   disabled={isLoading}
-                  className="flex-1 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-sleep-blue-400 focus:outline-none focus:border-sleep-orange-500 transition-colors disabled:opacity-50"
+                  className="flex-1 px-6 py-3 bg-white/10 border border-sleep-orange-600/20 text-white placeholder-sleep-blue-400 focus:outline-none focus:border-sleep-orange-600 transition-colors disabled:opacity-50 font-light text-sm"
                 />
                 <motion.button
                   type="submit"
                   disabled={isLoading}
-                  whileHover={{ scale: isLoading ? 1 : 1.05 }}
-                  whileTap={{ scale: isLoading ? 1 : 0.95 }}
-                  className="px-8 py-3 bg-sleep-orange-500 text-white rounded-full font-medium hover:bg-sleep-orange-600 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                  whileTap={{ scale: isLoading ? 1 : 0.98 }}
+                  className="px-8 py-3 bg-sleep-orange-600 text-white font-light text-sm hover:bg-sleep-orange-700 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed tracking-wide"
                 >
-                  {isLoading ? '提交中...' : '订阅'}
+                  {isLoading ? 'Sending...' : 'Subscribe'}
                 </motion.button>
               </div>
               {message && (
@@ -179,14 +180,14 @@ export default function Footer() {
         <div className="border-t border-sleep-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-sleep-blue-400 font-light">
           <p>© 2025 Lumina Sleep Technology. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">
-              隐私政策
+            <a href="#" className="hover:text-white transition-colors text-xs tracking-wide">
+              Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
-              服务条款
+            <a href="#" className="hover:text-white transition-colors text-xs tracking-wide">
+              Terms of Service
             </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Cookie设置
+            <a href="#" className="hover:text-white transition-colors text-xs tracking-wide">
+              Cookie Settings
             </a>
           </div>
         </div>
