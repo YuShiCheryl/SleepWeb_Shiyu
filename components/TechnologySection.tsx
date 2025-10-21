@@ -179,32 +179,31 @@ export default function TechnologySection() {
                     {[0, 1, 2, 3].map((i) => (
                       <motion.div
                         key={i}
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={
-                          isInView
-                            ? {
-                                scale: [1, 1.5 + i * 0.3],
-                                opacity: [0.4, 0],
-                              }
-                            : {}
-                        }
-                        transition={{
-                          duration: 3,
-                          delay: 1 + i * 0.3,
-                          repeat: Infinity,
-                          ease: 'easeOut',
-                        }}
                         className="absolute border border-sleep-orange-600"
                         style={{
                           width: '120px',
                           height: '120px',
                           borderRadius: '50%',
                         }}
+                        animate={
+                          isInView
+                            ? {
+                                scale: [1, 1.5 + i * 0.3],
+                                opacity: [0, 0.4, 0],
+                              }
+                            : { scale: 1, opacity: 0 }
+                        }
+                        transition={{
+                          duration: 3,
+                          delay: i * 0.75,
+                          repeat: Infinity,
+                          ease: 'easeOut',
+                        }}
                       />
                     ))}
                     
                     {/* 中心图标 */}
-                    <div className="relative z-10 w-32 h-32 border border-sleep-orange-600 flex items-center justify-center bg-sleep-blue-950/50 backdrop-blur-sm">
+                    <div className="relative z-10 flex items-center justify-center">
                       <svg
                         className="w-16 h-16 text-sleep-orange-500"
                         fill="none"
