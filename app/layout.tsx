@@ -1,12 +1,22 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Urbanist } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter'
+})
+
+const urbanist = Urbanist({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-urbanist'
+})
 
 export const metadata: Metadata = {
-  title: '智能睡眠 | 科技改善生活品质',
-  description: '领先的智能睡眠解决方案，结合科技与康养，为您带来深度睡眠体验',
+  title: 'Lumina Sleep | Redefining Deep Sleep',
+  description: 'Experience the future of sleep technology with Lumina',
 }
 
 export default function RootLayout({
@@ -16,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${urbanist.variable} font-sans`}>{children}</body>
     </html>
   )
 }

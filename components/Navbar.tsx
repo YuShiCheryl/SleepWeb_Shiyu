@@ -16,10 +16,10 @@ export default function Navbar() {
   }, [])
 
   const navItems = [
-    { name: '产品', href: '#product' },
-    { name: '科技', href: '#technology' },
-    { name: '特色', href: '#features' },
-    { name: '关于', href: '#about' },
+    { name: 'Products', href: '#product' },
+    { name: 'Technology', href: '#technology' },
+    { name: 'Features', href: '#features' },
+    { name: 'About', href: '#about' },
   ]
 
   return (
@@ -36,46 +36,52 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center space-x-3"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-sleep-blue-700 to-sleep-blue-500 rounded-lg flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
+            <div className="relative w-9 h-9">
+              {/* 橙色边框 */}
+              <div className="absolute inset-0 border border-sleep-orange-600 rounded-full opacity-60" />
+              {/* 内部图标 */}
+              <div className="absolute inset-0.5 bg-gradient-to-br from-sleep-blue-800 to-sleep-blue-950 rounded-full flex items-center justify-center">
+                <svg
+                  className="w-4 h-4 text-sleep-orange-500"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                </svg>
+              </div>
             </div>
-            <span className="text-xl font-bold text-sleep-blue-900">
-              智眠科技
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xl font-display font-light tracking-wider text-sleep-blue-900">
+                LUMINA
+              </span>
+              <span className="text-[9px] font-light tracking-widest text-sleep-blue-600 -mt-1">
+                SLEEP TECH
+              </span>
+            </div>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-sleep-blue-700 transition-colors font-medium"
+                className="text-gray-700 hover:text-sleep-blue-900 transition-colors font-light text-sm tracking-wide relative group"
               >
                 {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-sleep-orange-600 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2.5 bg-sleep-orange-500 text-white rounded-full font-medium hover:bg-sleep-orange-600 transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative px-6 py-2 bg-sleep-orange-600 text-white font-light text-sm tracking-wide overflow-hidden group"
             >
-              立即体验
+              <span className="relative z-10">Get Started</span>
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.button>
           </div>
 
@@ -125,8 +131,8 @@ export default function Navbar() {
                   {item.name}
                 </a>
               ))}
-              <button className="w-full px-6 py-2.5 bg-sleep-orange-500 text-white rounded-full font-medium hover:bg-sleep-orange-600 transition-colors">
-                立即体验
+              <button className="w-full px-6 py-2 bg-sleep-orange-600 text-white font-light text-sm tracking-wide">
+                Get Started
               </button>
             </div>
           </motion.div>

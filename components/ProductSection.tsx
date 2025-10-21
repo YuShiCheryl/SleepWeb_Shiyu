@@ -10,118 +10,180 @@ export default function ProductSection() {
 
   const products = [
     {
-      title: '智能温控床垫',
-      subtitle: 'Pro Series',
-      description: '精准温度控制，AI学习您的睡眠偏好，自动调节最适宜的温度环境',
-      features: ['±1°C精准控温', '双区独立调节', 'AI自动学习'],
-      gradient: 'from-sleep-blue-700 to-sleep-blue-500',
+      title: 'Temperature Control Mattress',
+      subtitle: 'PRO SERIES',
+      description: 'Precision temperature control with AI learning algorithm, automatically adjusting to your perfect sleep environment',
+      features: ['±1°C Precision', 'Dual Zone Control', 'AI Learning'],
     },
     {
-      title: '睡眠监测系统',
-      subtitle: 'Monitor+',
-      description: '非接触式全方位监测，实时追踪心率、呼吸、睡眠周期',
-      features: ['医疗级传感器', '睡眠评分', '健康建议'],
-      gradient: 'from-sleep-blue-600 to-sleep-orange-500',
+      title: 'Sleep Monitoring System',
+      subtitle: 'MONITOR+',
+      description: 'Non-intrusive full monitoring system tracking heart rate, breathing patterns, and sleep cycles',
+      features: ['Medical-grade Sensors', 'Sleep Score', 'Health Insights'],
     },
     {
-      title: '智能枕头',
-      subtitle: 'Pillow Smart',
-      description: '自适应高度调节，配合温控系统，打造完美睡眠姿势',
-      features: ['记忆海绵', '智能升降', '凉感面料'],
-      gradient: 'from-sleep-orange-500 to-sleep-orange-400',
+      title: 'Smart Pillow',
+      subtitle: 'PILLOW SMART',
+      description: 'Adaptive height adjustment working seamlessly with temperature control for perfect posture',
+      features: ['Memory Foam', 'Auto Height Adjust', 'Cooling Fabric'],
     },
   ]
 
   return (
-    <section id="product" ref={ref} className="py-32 bg-gray-50">
+    <section id="product" ref={ref} className="py-32 bg-white relative overflow-hidden">
+      {/* 背景装饰 */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-sleep-orange-600/30 to-transparent" />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="mb-20"
         >
-          <span className="text-sleep-orange-500 font-semibold text-sm uppercase tracking-wider">
-            产品系列
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-sleep-blue-900 mt-4 mb-6">
-            科技赋能睡眠健康
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px w-12 bg-sleep-orange-600" />
+            <span className="text-sleep-orange-600 font-light text-sm uppercase tracking-widest">
+              Product Line
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-display font-light text-sleep-blue-950 mb-6 tracking-tight">
+            Technology Meets
+            <br />
+            <span className="text-sleep-blue-800">Sleep Science</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            每一款产品都经过严格的科学验证，为您提供可靠的睡眠解决方案
+          <p className="text-lg text-gray-500 max-w-2xl font-light">
+            Every product is rigorously tested and scientifically validated
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {products.map((product, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ y: -10 }}
-              className="group"
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="group relative"
             >
-              <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                {/* Product Image Placeholder */}
-                <div
-                  className={`h-64 bg-gradient-to-br ${product.gradient} flex items-center justify-center relative overflow-hidden`}
-                >
+              <div className="relative bg-gray-50 overflow-hidden">
+                {/* 顶部橙色边框 */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={isInView ? { scaleX: 1 } : {}}
+                  transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
+                  className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-sleep-orange-600 via-sleep-orange-500 to-sleep-orange-600 origin-left"
+                />
+
+                {/* 产品图片区域 */}
+                <div className="relative h-80 bg-gradient-to-br from-sleep-blue-900 to-sleep-blue-950 flex items-center justify-center overflow-hidden">
+                  {/* 深空星点效果 */}
+                  <div className="absolute inset-0">
+                    {[...Array(20)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0 }}
+                        animate={{ 
+                          opacity: [0.2, 0.8, 0.2],
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                          duration: 3 + Math.random() * 2,
+                          repeat: Infinity,
+                          delay: Math.random() * 2,
+                        }}
+                        className="absolute w-1 h-1 bg-white rounded-full"
+                        style={{
+                          left: `${Math.random() * 100}%`,
+                          top: `${Math.random() * 100}%`,
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* 产品图标 */}
                   <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={isInView ? { scale: 1, opacity: 0.1 } : {}}
-                    transition={{ duration: 1, delay: index * 0.2 + 0.3 }}
-                    className="absolute inset-0 bg-white rounded-full blur-3xl transform scale-150"
-                  />
-                  <svg
-                    className="w-32 h-32 text-white/50 relative z-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                    className="relative z-10"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                    />
-                  </svg>
+                    <svg
+                      className="w-24 h-24 text-white/20"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={0.5}
+                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                      />
+                    </svg>
+                  </motion.div>
+
+                  {/* 橙色光晕装饰 */}
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.1, 0.2, 0.1],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-0 bg-gradient-radial from-sleep-orange-600/20 via-transparent to-transparent"
+                  />
                 </div>
 
-                <div className="p-8">
+                {/* 产品信息 */}
+                <div className="p-8 relative">
+                  {/* 左侧装饰线 */}
+                  <div className="absolute left-0 top-8 bottom-8 w-px bg-gradient-to-b from-transparent via-sleep-orange-600/30 to-transparent" />
+                  
                   <div className="mb-4">
-                    <span className="text-sleep-orange-500 text-sm font-semibold">
+                    <span className="text-sleep-orange-600 text-xs font-light tracking-widest uppercase">
                       {product.subtitle}
                     </span>
-                    <h3 className="text-2xl font-bold text-sleep-blue-900 mt-1">
+                    <h3 className="text-2xl font-display font-light text-sleep-blue-950 mt-2 tracking-tight">
                       {product.title}
                     </h3>
                   </div>
-                  <p className="text-gray-600 mb-6">{product.description}</p>
-                  <ul className="space-y-2 mb-6">
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed font-light text-sm">
+                    {product.description}
+                  </p>
+                  
+                  <ul className="space-y-3 mb-8">
                     {product.features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-sm">
-                        <svg
-                          className="w-5 h-5 text-sleep-orange-500 mr-2"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        {feature}
+                      <li key={i} className="flex items-center text-sm font-light">
+                        <div className="w-1 h-1 bg-sleep-orange-600 mr-3" />
+                        <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}
                   </ul>
+                  
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full py-3 bg-sleep-blue-900 text-white rounded-full font-medium hover:bg-sleep-blue-800 transition-colors"
+                    whileHover={{ x: 5 }}
+                    className="group/btn flex items-center gap-2 text-sleep-blue-950 font-light text-sm tracking-wide"
                   >
-                    了解更多
+                    <span>Discover More</span>
+                    <svg
+                      className="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                    {/* 底部装饰线 */}
+                    <div className="absolute bottom-0 left-0 w-12 h-px bg-sleep-orange-600 group-hover/btn:w-24 transition-all" />
                   </motion.button>
                 </div>
               </div>
@@ -132,4 +194,3 @@ export default function ProductSection() {
     </section>
   )
 }
-

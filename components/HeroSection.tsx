@@ -1,23 +1,50 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import StarryBackground from './StarryBackground'
+import AnimatedGradient from './AnimatedGradient'
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-sleep-blue-950 via-sleep-blue-900 to-sleep-blue-800">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* 深空背景 */}
+      <AnimatedGradient />
+      
+      {/* 星空效果 */}
+      <StarryBackground />
+      
+      {/* 橙色流线装饰 */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 2 }}
-          className="absolute top-20 left-20 w-96 h-96 bg-sleep-blue-500 rounded-full blur-3xl"
+          animate={{ 
+            pathLength: [0, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-20 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sleep-orange-600 to-transparent opacity-30"
+          style={{ 
+            boxShadow: '0 0 20px rgba(255, 123, 0, 0.4)',
+          }}
         />
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-sleep-orange-500 rounded-full blur-3xl"
+          animate={{ 
+            pathLength: [1, 0],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{ 
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+          className="absolute bottom-40 right-0 w-1 h-96 bg-gradient-to-b from-transparent via-sleep-orange-600 to-transparent opacity-20"
+          style={{ 
+            boxShadow: '0 0 20px rgba(255, 106, 0, 0.3)',
+          }}
         />
       </div>
 
@@ -27,34 +54,49 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-8"
+          className="space-y-10"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-block px-4 py-2 bg-sleep-orange-500/20 backdrop-blur-sm rounded-full border border-sleep-orange-500/30"
+            className="inline-block relative"
           >
-            <span className="text-sleep-orange-400 text-sm font-medium">
-              智能睡眠科技 · 引领行业创新
-            </span>
+            <div className="px-6 py-2 backdrop-blur-sm border border-sleep-orange-600/40 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-sleep-orange-600/10 to-transparent" />
+              <span className="relative text-sleep-orange-400 text-sm font-light tracking-widest uppercase">
+                The Future of Sleep
+              </span>
+            </div>
+            {/* 橙色光晕 */}
+            <div className="absolute -inset-2 bg-sleep-orange-600/20 blur-xl -z-10" />
           </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
+          <h1 className="text-5xl md:text-8xl font-display font-light text-white leading-tight tracking-tight">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
+              className="mb-4"
             >
-              重新定义
+              Redefining
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-clip-text text-transparent bg-gradient-to-r from-white via-sleep-blue-200 to-sleep-orange-300"
+              className="relative inline-block"
             >
-              深度睡眠体验
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-sleep-blue-100 to-white">
+                Deep Sleep
+              </span>
+              {/* 下划线装饰 */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sleep-orange-600 to-transparent"
+              />
             </motion.div>
           </h1>
 
@@ -62,11 +104,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-xl md:text-2xl text-sleep-blue-200 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-sleep-blue-200 max-w-2xl mx-auto leading-relaxed font-light"
           >
-            结合前沿科技与人体工学，为您打造个性化的智能睡眠环境
+            Precision temperature control meets AI learning
             <br />
-            让每一晚都成为身心修复的黄金时刻
+            <span className="text-sleep-blue-300">
+              Experience personalized sleep environment like never before
+            </span>
           </motion.p>
 
           <motion.div
@@ -76,18 +120,23 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-sleep-orange-500 text-white rounded-full font-medium text-lg hover:bg-sleep-orange-600 transition-colors shadow-lg shadow-sleep-orange-500/30"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative px-10 py-4 text-white font-light text-lg overflow-hidden"
             >
-              探索产品
+              <div className="absolute inset-0 bg-gradient-to-r from-sleep-orange-600 to-sleep-orange-700" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-sleep-orange-700 to-sleep-orange-800" />
+              <span className="relative z-10 tracking-wide">Explore Products</span>
+              {/* 边框装饰 */}
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-full font-medium text-lg hover:bg-white/20 transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative px-10 py-4 text-white border border-sleep-orange-600/40 backdrop-blur-sm font-light text-lg"
             >
-              了解科技
+              <div className="absolute inset-0 bg-sleep-orange-600/0 group-hover:bg-sleep-orange-600/10 transition-colors" />
+              <span className="relative z-10 tracking-wide">Learn More</span>
             </motion.button>
           </motion.div>
 
@@ -96,18 +145,27 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-16"
+            className="grid grid-cols-3 gap-12 max-w-4xl mx-auto pt-20"
           >
             {[
-              { number: '98%', label: '用户满意度' },
-              { number: '35min', label: '平均入睡时间缩短' },
-              { number: '2.5h', label: '深度睡眠增加' },
+              { number: '98%', label: 'User Satisfaction' },
+              { number: '-35min', label: 'Fall Asleep Faster' },
+              { number: '+2.5h', label: 'Deep Sleep Gained' },
             ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {stat.number}
+              <div key={index} className="text-center relative group">
+                {/* 顶部橙色装饰线 */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 1 + index * 0.2 }}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-px bg-gradient-to-r from-transparent via-sleep-orange-600 to-transparent"
+                />
+                <div className="pt-6">
+                  <div className="text-4xl md:text-5xl font-display font-light text-white mb-3 tracking-tight">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs text-sleep-blue-300 font-light tracking-wider uppercase">{stat.label}</div>
                 </div>
-                <div className="text-sm text-sleep-blue-300">{stat.label}</div>
               </div>
             ))}
           </motion.div>

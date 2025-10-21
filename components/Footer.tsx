@@ -1,8 +1,39 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 export default function Footer() {
+  const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setMessage('')
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setMessage('✅ ' + data.message)
+        setEmail('')
+      } else {
+        setMessage('❌ ' + data.error)
+      }
+    } catch (error) {
+      setMessage('❌ 网络错误，请稍后重试')
+    } finally {
+      setIsLoading(false)
+    }
+  }
   const footerLinks = {
     产品: ['智能温控床垫', '睡眠监测系统', '智能枕头', '配件与服务'],
     支持: ['帮助中心', '安装指南', '常见问题', '联系客服'],
@@ -17,30 +48,34 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-2 mb-6"
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center space-x-3 mb-6"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-sleep-blue-700 to-sleep-blue-500 rounded-lg flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                  />
-                </svg>
+              <div className="relative w-9 h-9">
+                <div className="absolute inset-0 border border-sleep-orange-600 rounded-full opacity-60" />
+                <div className="absolute inset-0.5 bg-gradient-to-br from-sleep-blue-800 to-sleep-blue-950 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 text-sleep-orange-500"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                  </svg>
+                </div>
               </div>
-              <span className="text-xl font-bold">智眠科技</span>
+              <div className="flex flex-col">
+                <span className="text-lg font-display font-light tracking-wider">
+                  LUMINA
+                </span>
+                <span className="text-[8px] font-light tracking-widest text-sleep-blue-400 -mt-1">
+                  SLEEP TECH
+                </span>
+              </div>
             </motion.div>
-            <p className="text-sleep-blue-300 text-sm leading-relaxed mb-6">
-              用科技重新定义睡眠
+            <p className="text-sleep-blue-300 text-sm leading-relaxed mb-6 font-light">
+              Redefining sleep with technology
               <br />
-              让每一晚都值得期待
+              Every night deserves perfection
             </p>
             <div className="flex space-x-4">
               {[
@@ -106,26 +141,43 @@ export default function Footer() {
             <p className="text-sleep-blue-300 mb-6">
               获取最新的睡眠研究成果和产品更新
             </p>
-            <div className="flex gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="输入您的邮箱"
-                className="flex-1 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-sleep-blue-400 focus:outline-none focus:border-sleep-orange-500 transition-colors"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-sleep-orange-500 text-white rounded-full font-medium hover:bg-sleep-orange-600 transition-colors whitespace-nowrap"
-              >
-                订阅
-              </motion.button>
-            </div>
+            <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
+              <div className="flex gap-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="输入您的邮箱"
+                  required
+                  disabled={isLoading}
+                  className="flex-1 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-sleep-blue-400 focus:outline-none focus:border-sleep-orange-500 transition-colors disabled:opacity-50"
+                />
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  whileHover={{ scale: isLoading ? 1 : 1.05 }}
+                  whileTap={{ scale: isLoading ? 1 : 0.95 }}
+                  className="px-8 py-3 bg-sleep-orange-500 text-white rounded-full font-medium hover:bg-sleep-orange-600 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? '提交中...' : '订阅'}
+                </motion.button>
+              </div>
+              {message && (
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 text-sm"
+                >
+                  {message}
+                </motion.p>
+              )}
+            </form>
           </div>
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-sleep-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-sleep-blue-400">
-          <p>© 2025 智眠科技 版权所有</p>
+        <div className="border-t border-sleep-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-sleep-blue-400 font-light">
+          <p>© 2025 Lumina Sleep Technology. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">
               隐私政策
