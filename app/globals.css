@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sleep-blue-700 to-sleep-blue-500;
+  }
+  
+  .text-gradient-orange {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sleep-orange-500 to-sleep-orange-400;
+  }
+}
+
