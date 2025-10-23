@@ -82,10 +82,14 @@ export default function Navbar() {
               </svg>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-display font-light tracking-wider text-sleep-blue-900">
+              <span className={`text-xl font-display font-light tracking-wider transition-colors duration-300 ${
+                isScrolled ? 'text-sleep-blue-900' : 'text-white'
+              }`}>
                 LUMINA
               </span>
-              <span className="text-[9px] font-light tracking-widest text-sleep-blue-600 -mt-1">
+              <span className={`text-[9px] font-light tracking-widest -mt-1 transition-colors duration-300 ${
+                isScrolled ? 'text-sleep-blue-600' : 'text-white/80'
+              }`}>
                 SLEEP TECH
               </span>
             </div>
@@ -97,7 +101,11 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-sleep-blue-900 transition-colors font-light text-sm tracking-wide relative group"
+                className={`transition-colors font-light text-sm tracking-wide relative group ${
+                  isScrolled 
+                    ? 'text-gray-700 hover:text-sleep-blue-900' 
+                    : 'text-white/90 hover:text-white'
+                }`}
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-sleep-orange-600 group-hover:w-full transition-all duration-300" />
@@ -106,10 +114,19 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="relative px-6 py-2 bg-sleep-orange-600 text-white font-light text-sm tracking-wide overflow-hidden group"
+              className={`relative px-6 py-2 font-light text-sm tracking-wide transition-all duration-300 ${
+                isScrolled
+                  ? 'bg-sleep-orange-500/10 text-sleep-orange-600'
+                  : 'bg-sleep-orange-600 text-white'
+              }`}
             >
               <span className="relative z-10">Get Started</span>
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* 静态渐变装饰线 */}
+              <div className={`absolute -bottom-1 left-0 right-0 h-px ${
+                isScrolled 
+                  ? 'bg-gradient-to-r from-transparent via-sleep-orange-600 to-transparent' 
+                  : 'bg-gradient-to-r from-transparent via-white/50 to-transparent'
+              }`} />
             </motion.button>
           </div>
 
@@ -159,8 +176,9 @@ export default function Navbar() {
                   {item.name}
                 </a>
               ))}
-              <button className="w-full px-6 py-2 bg-sleep-orange-600 text-white font-light text-sm tracking-wide">
+              <button className="w-full px-6 py-2 bg-sleep-orange-500/10 text-sleep-orange-600 font-light text-sm tracking-wide hover:bg-sleep-orange-500/20 transition-colors relative">
                 Get Started
+                <div className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sleep-orange-600 to-transparent" />
               </button>
             </div>
           </motion.div>
