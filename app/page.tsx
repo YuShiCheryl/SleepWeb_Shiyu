@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
 import ProductSection from '@/components/ProductSection'
@@ -20,4 +19,3 @@ export default function Home() {
     </main>
   )
 }
-

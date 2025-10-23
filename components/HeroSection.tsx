@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import StarryBackground from './StarryBackground'
 import AnimatedGradient from './AnimatedGradient'
+import SpaceParticles from './SpaceParticles'
 
 export default function HeroSection() {
   return (
@@ -10,8 +11,11 @@ export default function HeroSection() {
       {/* 深空背景 */}
       <AnimatedGradient />
       
-      {/* 星空效果 */}
-      <StarryBackground />
+      {/* 3D 宇宙纵深效果 */}
+      <SpaceParticles />
+      
+      {/* 星空效果（可选，可以注释掉） */}
+      {/* <StarryBackground /> */}
       
       {/* 橙色流线装饰 */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>

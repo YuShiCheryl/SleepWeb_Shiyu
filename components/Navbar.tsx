@@ -39,19 +39,47 @@ export default function Navbar() {
             whileHover={{ scale: 1.02 }}
             className="flex items-center space-x-3"
           >
-            <div className="relative w-9 h-9">
-              {/* 橙色边框 */}
-              <div className="absolute inset-0 border border-sleep-orange-600 rounded-full opacity-60" />
-              {/* 内部图标 */}
-              <div className="absolute inset-0.5 bg-gradient-to-br from-sleep-blue-800 to-sleep-blue-950 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-sleep-orange-500"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                </svg>
-              </div>
+            <div className="relative w-10 h-10">
+              {/* 月亮形状 Logo */}
+              <svg
+                className="w-10 h-10"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* 外圈橙色光晕 */}
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="18"
+                  stroke="url(#gradient1)"
+                  strokeWidth="0.5"
+                  opacity="0.4"
+                />
+                
+                {/* 月亮形状 */}
+                <path
+                  d="M20 6 C 12 6, 6 12, 6 20 C 6 28, 12 34, 20 34 C 16 34, 12 30, 12 20 C 12 10, 16 6, 20 6 Z"
+                  fill="url(#gradient2)"
+                />
+                
+                {/* 小星星点缀 */}
+                <circle cx="28" cy="12" r="1" fill="#FF7B00" opacity="0.8" />
+                <circle cx="30" cy="18" r="0.8" fill="#FF7B00" opacity="0.6" />
+                <circle cx="26" cy="26" r="0.7" fill="#FF7B00" opacity="0.5" />
+                
+                {/* 渐变定义 */}
+                <defs>
+                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#FF7B00" />
+                    <stop offset="100%" stopColor="#FF8C00" />
+                  </linearGradient>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#001f42" />
+                    <stop offset="100%" stopColor="#000e1f" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-display font-light tracking-wider text-sleep-blue-900">
