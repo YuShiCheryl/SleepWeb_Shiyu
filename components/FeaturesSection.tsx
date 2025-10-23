@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import ElasticGrid from './ElasticGrid'
 
 export default function FeaturesSection() {
   const ref = useRef(null)
@@ -93,7 +94,7 @@ export default function FeaturesSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ElasticGrid columns={3}>
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -137,7 +138,7 @@ export default function FeaturesSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </ElasticGrid>
 
         {/* 底部装饰引导 */}
         <motion.div

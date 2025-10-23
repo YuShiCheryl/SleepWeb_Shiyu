@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import ElasticGrid from './ElasticGrid'
 
 export default function ProductSection() {
   const ref = useRef(null)
@@ -57,7 +58,7 @@ export default function ProductSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <ElasticGrid columns={3}>
           {products.map((product, index) => (
             <motion.div
               key={index}
@@ -189,7 +190,7 @@ export default function ProductSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </ElasticGrid>
       </div>
     </section>
   )
